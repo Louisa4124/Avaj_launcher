@@ -1,0 +1,14 @@
+UML synthax
+
+- : private
++ : public
+# : protected
+~ : for package or default visibility (visible to classes in the same package)
+
+Les fleches:
+
+triangle : inheritance
+carre : agregation
+carre noir : composition
+pointillee : dependencies
+
