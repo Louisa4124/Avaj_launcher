@@ -1,5 +1,5 @@
 
-public class Flyable {
+public abstract class Flyable {
 
     protected WeatherTower weatherTower;
 

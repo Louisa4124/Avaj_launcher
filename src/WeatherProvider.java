@@ -1,6 +1,8 @@
+// Singleton
+
 public class WeatherProvider {
 
-    private String[] weather = {"SUN", "RAIN", "FOG", "SNOW"};
+    private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     public WeatherProvider() {}
 

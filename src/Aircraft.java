@@ -1,4 +1,7 @@
-class Aircraft {
+
+// extends => is for extending (inheriting from) a class
+// implements => is for implementing an interface
+class Aircraft implements Flyable {
 
     protected long id;
     protected String name;
@@ -8,5 +11,13 @@ class Aircraft {
         this.id = p_id;
         this.name = p_name;
         this.coordinates = p_coordinates;
+    }
+    
+    @Override
+    public void updateConditions() {
+    }
+    
+    @Override
+    public void registerTower(WeatherTower weatherTower) {
     }
 }
