@@ -1,17 +1,7 @@
-public final class WeatherTower extends Tower {
-
-    private static WeatherTower INSTANCE;
-    private WeatherTower() {}
-
-    public static WeatherTower getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new WeatherTower();
-        }
-        return INSTANCE;
-    }
+public class WeatherTower extends Tower {
 
     public String getWeather(Coordinates p_coordinates) {
-
+        return WeatherProvider.getCurrentWeather(p_coordinates);
     }
 
     public void changeWeather() {
