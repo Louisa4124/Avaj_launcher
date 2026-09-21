@@ -5,30 +5,30 @@ class JetPlane extends Aircraft {
     }
 
     public void updateConditions() {
-        int longitude = coordinates.getLongitude();
-        int latitude = coordinates.getLatitude();
-        int height = coordinates.getHeight();
-
         String weather = weatherTower.getWeather(coordinates);
 
         switch (weather) {
             case "SUN":
-                latitude += 10;
-                height += 2;
-                if (height > 100)
-                    height = 100;
+                coordinates.increaseLatitude(10);
+                coordinates.increaseHeight(2);
+                Logger.log(this + ": The sun is shining bright!");
                 break;
             case "RAIN":
-                latitude += 5;
+                coordinates.increaseLatitude(5);
+                Logger.log(this + ": It's raining. Better watch out for lightings.");
                 break;
             case "FOG":
-                latitude += 1;
+                coordinates.increaseLatitude(1);
+                Logger.log(this + ": The fog is getting thicker!");
                 break;
             case "SNOW":
-                height -= 7;
-                if (height < 0)
-                    height = 0;
+                coordinates.increaseHeight(-7);
+                Logger.log(this + ": OMG! Winter is coming!");
                 break;
+        }
+        if (coordinates.getHeight() <= 0) {
+            Logger.log(this + ": landing.");
+            weatherTower.unregister(this);
         }
     }
 }

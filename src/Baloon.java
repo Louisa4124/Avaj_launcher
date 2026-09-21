@@ -1,37 +1,34 @@
-class Balloon extends Aircraft{
+class Baloon extends Aircraft{
 
-    public Balloon(long p_id, String p_name, Coordinates p_coordinates) {
+    public Baloon(long p_id, String p_name, Coordinates p_coordinates) {
+        super(p_id, p_name, p_coordinates);
     }
 
     public void updateConditions() {
-        int longitude = coordinates.getLongitude();
-        int latitude = coordinates.getLatitude();
-        int height = coordinates.getHeight();
-
         String weather = weatherTower.getWeather(coordinates);
 
         switch (weather) {
             case "SUN":
-                longitude += 2;
-                height += 4;
-                if (height > 100)
-                    height = 100;
+                coordinates.increaseLongitude(2);
+                coordinates.increaseHeight(4);
+                Logger.log(this + ": Let's enjoy the good weather and take some pics.");
                 break;
             case "RAIN":
-                height -= 5;
-                if (height < 0)
-                    height = 0;
+                coordinates.increaseHeight(-5);
+                Logger.log(this + ": Damn you rain! You messed up my balloon.");
                 break;
             case "FOG":
-                height -= 3;
-                if (height < 0)
-                    height = 0;
+                coordinates.increaseHeight(-3);
+                Logger.log(this + ": Visibility: zero. Confidence: also zero.");
                 break;
             case "SNOW":
-                height -= 15;
-                if (height < 0)
-                    height = 0;
+                coordinates.increaseHeight(-15);
+                Logger.log(this + ": Great. Now we're a flying snowman.");
                 break;
+        }
+        if (coordinates.getHeight() <= 0) {
+            Logger.log(this + ": landing.");
+            weatherTower.unregister(this);
         }
     }
 }

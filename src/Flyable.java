@@ -3,14 +3,13 @@ public abstract class Flyable {
 
     protected WeatherTower weatherTower;
 
-    public Flyable(WeatherTower weatherTower) {
-        this.weatherTower = weatherTower;
-    }
-
     public abstract void updateConditions();
+    public abstract String getType();
+    public abstract String getName();
+    public abstract long getId();
 
-    public void registerTower(WeatherTower* p_tower) {
+    public void registerTower(WeatherTower p_tower) {
         this.weatherTower = p_tower;
+        weatherTower.register(this);
     }
-
 }

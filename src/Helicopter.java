@@ -1,33 +1,34 @@
 public class Helicopter extends Aircraft {
 
     public Helicopter(long p_id, String p_name, Coordinates p_coordinates) {
+        super(p_id, p_name, p_coordinates);
     }
 
     public void updateConditions() {
-        int longitude = coordinates.getLongitude();
-        int latitude = coordinates.getLatitude();
-        int height = coordinates.getHeight();
-
         String weather = weatherTower.getWeather(coordinates);
 
         switch (weather) {
             case "SUN":
-                longitude += 10;
-                height += 2;
-                if (height > 100)
-                    height = 100;
+                coordinates.increaseLongitude(10);
+                coordinates.increaseHeight(2);
+                Logger.log(this + ": This is hot.");
                 break;
             case "RAIN":
-                longitude += 5;
+                coordinates.increaseLongitude(5);
+                Logger.log(this + ": Rain is pouring down!");
                 break;
             case "FOG":
-                longitude += 1;
+                coordinates.increaseLongitude(1);
+                Logger.log(this + ": Dense fog! I can barely see anything.");
                 break;
             case "SNOW":
-                height -= 12;
-                if (height < 0)
-                    height = 0;
+                coordinates.increaseHeight(-12);
+                Logger.log(this + ": My rotor is going to freeze!");
                 break;
+        }
+        if (coordinates.getHeight() <= 0) {
+            Logger.log(this + ": landing.");
+            weatherTower.unregister(this);
         }
     }
 }

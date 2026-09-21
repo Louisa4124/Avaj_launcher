@@ -1,4 +1,3 @@
-
 public class Coordinates {
 
     private int longitude;
@@ -21,5 +20,15 @@ public class Coordinates {
 
     public int getHeight() {
         return height;
+    }
+
+    public void increaseLongitude(int value) { longitude += value; }
+
+    public void increaseLatitude(int value) { latitude += value; }
+
+    public void increaseHeight(int value) {
+        height += value;
+        if (height > 100)
+            height = 100;
     }
 }

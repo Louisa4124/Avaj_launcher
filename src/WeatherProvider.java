@@ -1,16 +1,16 @@
 // Singleton
 
-public final class WeatherProvider Singleton{
+public class WeatherProvider{
 
-    private static WeatherProvider INSTANCE;
+    private static WeatherProvider instance;
     private WeatherProvider() {}
     private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     public static WeatherProvider getProvider() {
-        if (INSTANCE == null) {
-            INSTANCE = new WeatherProvider();
+        if (instance == null) {
+            instance = new WeatherProvider();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public String getCurrentWeather(Coordinates p_coordinates) {
